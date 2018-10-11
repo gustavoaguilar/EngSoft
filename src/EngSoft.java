@@ -21,7 +21,6 @@ public class EngSoft {
      */
     public static void main(String[] args) {
 
-        
         ClienteDAO clienteDao = new ClienteDAO();
         EnderecoDAO enderecoDao = new EnderecoDAO();
               
