@@ -36,23 +36,23 @@ public class ClienteDAO {
         return true;
     }
     
-//    public List<Cliente> select(String atributo, String tipo){
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EngSoftPU");
-//        EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
-//        
-//        List<Cliente> l = null;
-//        
-//        try{
-//            Query q = em.createNativeQuery("select * from CLIENTE c where "+tipo.toUpperCase()+" = '"+atributo+"';", Cliente.class);
-//            l = q.getResultList();
-//        }catch(Exception e){
-//            em.getTransaction().rollback();
-//        }finally{
-//            em.close();
-//        }
-//        return l;
-//    }
+    public List<Cliente> select(String atributo, String tipo){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EngSoftPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        
+        List<Cliente> l = null;
+        
+        try{
+            Query q = em.createNativeQuery("select * from CLIENTE c where "+tipo.toUpperCase()+" = '"+atributo+"';", Cliente.class);
+            l = q.getResultList();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }finally{
+            em.close();
+        }
+        return l;
+    }
 //    
 //    public boolean update(Cliente cliente){
 //        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EngSoftPU");
@@ -101,18 +101,4 @@ public class ClienteDAO {
 //        return true;
 //    }
 
-    public void persist1(Object object) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EngSoftPU");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            em.persist(object);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-    }
 }
