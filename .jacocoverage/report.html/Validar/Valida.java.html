@@ -31,8 +31,8 @@ import java.util.regex.Pattern;
 <span class="fc" id="L31">        return matcher.find();</span>
     }
     public void validaCliente(Cliente cli) throws ValidaException{
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        if(!cli.getCpf().matches(regexCpf)){</span>
-<span class="fc" id="L35">            throw new ValidaException(&quot;CPF invalido! (Formato invalido)&quot;);</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if(!cli.getCpf().matches(regexCpf)){</span>
+<span class="nc" id="L35">            throw new ValidaException(&quot;CPF invalido! (Formato invalido)&quot;);</span>
         }
 <span class="fc" id="L37">        int aux = 10;</span>
 <span class="fc" id="L38">        int valor = 0;</span>
@@ -55,32 +55,32 @@ import java.util.regex.Pattern;
 <span class="fc" id="L55">            valor+=((aux)*Character.getNumericValue(cli.getCpf().charAt(i)));</span>
 <span class="fc" id="L56">            aux--;</span>
         }
-<span class="fc bfc" id="L58" title="All 2 branches covered.">        if((valor*10)%11!=Character.getNumericValue(cli.getCpf().charAt(13))){</span>
-<span class="fc" id="L59">            throw new ValidaException(&quot;CPF invalido! (Digito verificador incorreto)&quot;);</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        if((valor*10)%11!=Character.getNumericValue(cli.getCpf().charAt(13))){</span>
+<span class="nc" id="L59">            throw new ValidaException(&quot;CPF invalido! (Digito verificador incorreto)&quot;);</span>
         }
         // if(!String.valueOf(cli.getId()).matches(regexId)){
             // System.out.println(&quot;ID Inválido&quot;);
         //    throw new ValidaException(&quot;ID INVALIDO&quot;);
         //}
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        if(!cli.getNome().matches(regexNome)){</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        if(!cli.getNome().matches(regexNome)){</span>
             // System.out.println(&quot;Nome Inválido&quot;);
-<span class="fc" id="L67">            throw new ValidaException(&quot;NOME INVÁLIDO&quot;);</span>
+<span class="nc" id="L67">            throw new ValidaException(&quot;NOME INVÁLIDO&quot;);</span>
         }
-<span class="fc bfc" id="L69" title="All 4 branches covered.">        if(!validaEmail(cli.getEmail()) || cli.getEmail().length() &gt; 64){</span>
+<span class="pc bpc" id="L69" title="2 of 4 branches missed.">        if(!validaEmail(cli.getEmail()) || cli.getEmail().length() &gt; 64){</span>
             // System.out.println(&quot;Email Inválido&quot;);
-<span class="fc" id="L71">            throw new ValidaException(&quot;EMAIL INVALIDO&quot;);</span>
+<span class="nc" id="L71">            throw new ValidaException(&quot;EMAIL INVALIDO&quot;);</span>
         }
-<span class="fc bfc" id="L73" title="All 2 branches covered.">        if(!cli.getTelefone().matches(regexTelefone)){</span>
-<span class="fc" id="L74">            throw new ValidaException(&quot;TELEFONE INVÁLIDO&quot;);</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">        if(!cli.getTelefone().matches(regexTelefone)){</span>
+<span class="nc" id="L74">            throw new ValidaException(&quot;TELEFONE INVÁLIDO&quot;);</span>
         }
-<span class="fc bfc" id="L76" title="All 2 branches covered.">         if (!cli.getEndereco().getRua().matches(nomeRuaBairroRegex))</span>
-<span class="fc" id="L77">            throw new ValidaException(&quot;NOME DA RUA INVÁLIDO&quot;);</span>
-<span class="fc bfc" id="L78" title="All 2 branches covered.">         if (!cli.getEndereco().getBairro().matches(nomeRuaBairroRegex))</span>
-<span class="fc" id="L79">            throw new ValidaException(&quot;BAIRRO INVÁLIDO&quot;);</span>
-<span class="fc bfc" id="L80" title="All 2 branches covered.">         if (!cli.getEndereco().getCidade().matches(nomeCidadeRegex))</span>
-<span class="fc" id="L81">            throw new ValidaException(&quot;CIDADE INVÁLIDA&quot;);</span>
-<span class="fc bfc" id="L82" title="All 2 branches covered.">         if (!String.valueOf(cli.getEndereco().getNumero()).matches(numeroRegex))</span>
-<span class="fc" id="L83">            throw new ValidaException(&quot;NUMERO DA RUA INVÁLIDO&quot;);</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">         if (!cli.getEndereco().getRua().matches(nomeRuaBairroRegex))</span>
+<span class="nc" id="L77">            throw new ValidaException(&quot;NOME DA RUA INVÁLIDO&quot;);</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">         if (!cli.getEndereco().getBairro().matches(nomeRuaBairroRegex))</span>
+<span class="nc" id="L79">            throw new ValidaException(&quot;BAIRRO INVÁLIDO&quot;);</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">         if (!cli.getEndereco().getCidade().matches(nomeCidadeRegex))</span>
+<span class="nc" id="L81">            throw new ValidaException(&quot;CIDADE INVÁLIDA&quot;);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">         if (!String.valueOf(cli.getEndereco().getNumero()).matches(numeroRegex))</span>
+<span class="nc" id="L83">            throw new ValidaException(&quot;NUMERO DA RUA INVÁLIDO&quot;);</span>
 <span class="fc" id="L84">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -14,22 +14,22 @@ import javax.persistence.Persistence;
  *
  * @author joao
  */
-<span class="nc" id="L17">public class EnderecoDAO {</span>
+<span class="fc" id="L17">public class EnderecoDAO {</span>
 
     public void persist(Endereco endereco) {
-<span class="nc" id="L20">        EntityManagerFactory emf = Persistence.createEntityManagerFactory(&quot;EngSoftPU&quot;);</span>
-<span class="nc" id="L21">        EntityManager em = emf.createEntityManager();</span>
-<span class="nc" id="L22">        em.getTransaction().begin();</span>
+<span class="fc" id="L20">        EntityManagerFactory emf = Persistence.createEntityManagerFactory(&quot;EngSoftPU&quot;);</span>
+<span class="fc" id="L21">        EntityManager em = emf.createEntityManager();</span>
+<span class="fc" id="L22">        em.getTransaction().begin();</span>
         try {
-<span class="nc" id="L24">            em.persist(endereco);</span>
-<span class="nc" id="L25">            em.getTransaction().commit();</span>
+<span class="fc" id="L24">            em.persist(endereco);</span>
+<span class="fc" id="L25">            em.getTransaction().commit();</span>
 <span class="nc" id="L26">        } catch (Exception e) {</span>
 <span class="nc" id="L27">            e.printStackTrace();</span>
 <span class="nc" id="L28">            em.getTransaction().rollback();</span>
         } finally {
-<span class="nc" id="L30">            em.close();</span>
-<span class="nc" id="L31">        }</span>
-<span class="nc" id="L32">    }</span>
+<span class="pc" id="L30">            em.close();</span>
+<span class="pc" id="L31">        }</span>
+<span class="fc" id="L32">    }</span>
  
     
     

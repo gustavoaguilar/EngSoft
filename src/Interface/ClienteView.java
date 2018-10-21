@@ -100,6 +100,11 @@ public class ClienteView extends javax.swing.JFrame {
         jLabel3.setText("Rua");
 
         numero_txt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###"))));
+        numero_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numero_txtActionPerformed(evt);
+            }
+        });
 
         rua_txt.setToolTipText("");
 
@@ -247,6 +252,10 @@ public class ClienteView extends javax.swing.JFrame {
     private void telefone_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefone_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_telefone_txtActionPerformed
+
+    private void numero_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numero_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numero_txtActionPerformed
 
     /**
      * @param args the command line arguments
