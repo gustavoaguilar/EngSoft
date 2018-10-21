@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Valida.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;EngSoft&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Validar</a> &gt; <span class="el_source">Valida.java</span></div><h1>Valida.java</h1><pre class="source lang-java linenums">package Validar;
+
+
+import Persistence.Cliente;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Gustavo Resende
+ */
+
+<span class="fc" id="L19">public class Valida {</span>
+<span class="fc" id="L20">    private final String regexCpf = &quot;^[0-9]{3}\\.[0-9]{3}\\.[0-9]{3}-[0-9]{2}&quot;;</span>
+<span class="fc" id="L21">    private final String regexNome = &quot;^[\\p{L} .'-]{5,100}$&quot;;</span>
+<span class="fc" id="L22">    private final String regexId = &quot;\\d{0,18}&quot;;</span>
+<span class="fc" id="L23">    private final String regexTelefone = &quot;^\\([1-9]{2}\\)[0-9]{4,5}\\-[0-9]{4}$&quot;;</span>
+<span class="fc" id="L24">    private final String nomeRuaBairroRegex = &quot;[\\d\\p{L} ]{3,30}&quot;;</span>
+<span class="fc" id="L25">    private final String nomeCidadeRegex = &quot;[\\p{L} ]{3,50}&quot;;</span>
+<span class="fc" id="L26">    private final String numeroRegex = &quot;[\\d]{1,5}&quot;;</span>
+<span class="fc" id="L27">    public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(&quot;^[A-Z0-9._-]{2,}+@[A-Z0-9.-]+\\.[A-Z]{1,}$&quot;, Pattern.CASE_INSENSITIVE);</span>
+    
+    public static boolean validaEmail(String emailStr) {
+<span class="fc" id="L30">        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);</span>
+<span class="fc" id="L31">        return matcher.find();</span>
+    }
+    public void validaCliente(Cliente cli) throws ValidaException{
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if(!cli.getCpf().matches(regexCpf)){</span>
+<span class="fc" id="L35">            throw new ValidaException(&quot;CPF invalido! (Formato invalido)&quot;);</span>
+        }
+<span class="fc" id="L37">        int aux = 10;</span>
+<span class="fc" id="L38">        int valor = 0;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        for(int i=0; i&lt; 11; i++){</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            if(cli.getCpf().charAt(i)=='.')</span>
+<span class="fc" id="L41">                continue;</span>
+   
+<span class="fc" id="L43">            valor+=((aux)*Character.getNumericValue(cli.getCpf().charAt(i)));</span>
+<span class="fc" id="L44">            aux--;</span>
+        }
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if((valor*10)%11!=Character.getNumericValue(cli.getCpf().charAt(12))){</span>
+<span class="fc" id="L47">            throw new ValidaException(&quot;CPF invalido! (Digito verificador incorreto)&quot;);</span>
+        }
+<span class="fc" id="L49">        aux = 11;</span>
+<span class="fc" id="L50">        valor = 0;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for(int i=0; i&lt; 13; i++){</span>
+<span class="fc bfc" id="L52" title="All 4 branches covered.">            if(cli.getCpf().charAt(i)=='.'||cli.getCpf().charAt(i)=='-')</span>
+<span class="fc" id="L53">                continue;</span>
+   
+<span class="fc" id="L55">            valor+=((aux)*Character.getNumericValue(cli.getCpf().charAt(i)));</span>
+<span class="fc" id="L56">            aux--;</span>
+        }
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if((valor*10)%11!=Character.getNumericValue(cli.getCpf().charAt(13))){</span>
+<span class="fc" id="L59">            throw new ValidaException(&quot;CPF invalido! (Digito verificador incorreto)&quot;);</span>
+        }
+        // if(!String.valueOf(cli.getId()).matches(regexId)){
+            // System.out.println(&quot;ID Inválido&quot;);
+        //    throw new ValidaException(&quot;ID INVALIDO&quot;);
+        //}
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if(!cli.getNome().matches(regexNome)){</span>
+            // System.out.println(&quot;Nome Inválido&quot;);
+<span class="fc" id="L67">            throw new ValidaException(&quot;NOME INVÁLIDO&quot;);</span>
+        }
+<span class="fc bfc" id="L69" title="All 4 branches covered.">        if(!validaEmail(cli.getEmail()) || cli.getEmail().length() &gt; 64){</span>
+            // System.out.println(&quot;Email Inválido&quot;);
+<span class="fc" id="L71">            throw new ValidaException(&quot;EMAIL INVALIDO&quot;);</span>
+        }
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if(!cli.getTelefone().matches(regexTelefone)){</span>
+<span class="fc" id="L74">            throw new ValidaException(&quot;TELEFONE INVÁLIDO&quot;);</span>
+        }
+<span class="fc bfc" id="L76" title="All 2 branches covered.">         if (!cli.getEndereco().getRua().matches(nomeRuaBairroRegex))</span>
+<span class="fc" id="L77">            throw new ValidaException(&quot;NOME DA RUA INVÁLIDO&quot;);</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">         if (!cli.getEndereco().getBairro().matches(nomeRuaBairroRegex))</span>
+<span class="fc" id="L79">            throw new ValidaException(&quot;BAIRRO INVÁLIDO&quot;);</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">         if (!cli.getEndereco().getCidade().matches(nomeCidadeRegex))</span>
+<span class="fc" id="L81">            throw new ValidaException(&quot;CIDADE INVÁLIDA&quot;);</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">         if (!String.valueOf(cli.getEndereco().getNumero()).matches(numeroRegex))</span>
+<span class="fc" id="L83">            throw new ValidaException(&quot;NUMERO DA RUA INVÁLIDO&quot;);</span>
+<span class="fc" id="L84">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

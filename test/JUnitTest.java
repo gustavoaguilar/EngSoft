@@ -19,13 +19,13 @@ import org.junit.Test;
  *
  * @author joao
  */
-public class Junit {
+public class JUnitTest {
     
     private Cliente cliente;
     private Endereco endereco;
     private Valida valida = new Valida();
     
-    public Junit() {
+    public JUnitTest() {
     }
     
     @BeforeClass
@@ -1140,4 +1140,57 @@ public void teste8() {
     //
     // @Test
     // public void hello() {}
+    
+    
+    //JACOCO CASES
+    @Test
+    public void teste42(){
+    	try{
+            cliente = new Cliente();
+            endereco = new Endereco();
+       	 
+       	 
+            cliente.setNome("Gustavo Aguilar");
+            cliente.setCpf("175.140.900-71");
+            endereco.setRua("15 de novembro santo alberto minas gerais mato grosso");
+            endereco.setBairro("Centro");
+            endereco.setNumero(384);
+            endereco.setCidade("Rio Preto");
+            cliente.setEndereco(endereco);
+            cliente.setTelefone("(43)98374-6352");
+            cliente.setEmail("gust@avo.br");
+
+            valida.validaCliente(cliente);
+            fail("[ERRO] - o sistema não detectou erro!");
+       	 
+    	}catch(ValidaException ve){
+       	 
+        	assertEquals("CPF invalido! (Digito verificador incorreto)", ve.getMessage());
+       	 
+    }}
+    @Test
+    public void teste43(){
+    	try{
+            cliente = new Cliente();
+            endereco = new Endereco();
+       	 
+       	 
+            cliente.setNome("Gustavo Aguilar");
+            cliente.setCpf("175.140.900-80");
+            endereco.setRua("15 de novembro santo alberto minas gerais mato grosso");
+            endereco.setBairro("Centro");
+            endereco.setNumero(384);
+            endereco.setCidade("Rio Preto");
+            cliente.setEndereco(endereco);
+            cliente.setTelefone("(43)98374-6352");
+            cliente.setEmail("gust@avo.br");
+
+            valida.validaCliente(cliente);
+            fail("[ERRO] - o sistema não detectou erro!");
+       	 
+    	}catch(ValidaException ve){
+       	 
+        	assertEquals("CPF invalido! (Digito verificador incorreto)", ve.getMessage());
+       	 
+    	}}
 }
