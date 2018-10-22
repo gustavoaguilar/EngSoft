@@ -1195,16 +1195,4 @@ public void teste8() {
         	assertEquals("CPF invalido! (Digito verificador incorreto)", ve.getMessage());
        	 
     	}}
-    
-        @Test
-    public void teste44(){
-        EnderecoDAO ed = new EnderecoDAO();
-        ClienteDAO cd = new ClienteDAO();
-
-        cliente = new Cliente();
-        endereco = new Endereco();
-                
-        ed.persist(endereco);
-        cd.persist(cliente);
-    }
 }
